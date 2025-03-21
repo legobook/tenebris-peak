@@ -1,5 +1,15 @@
 # Changelog
 
+### Version 0.1.2
+```
+[+] Added basic prototype textures (Made by Kenney)
+[~] Adjusted player movement (player moves faster going forward, slower going backwards)
+[~] Changed the environment
+[~] Fixed a variable naming bug with the player
+[-] Reduced camera bobbing
+[-] Removed sprinting
+```
+
 ### Version 0.1.1
 ```
 [+] Created a simple 3d plane
@@ -11,3 +21,6 @@
 ```
 [+] Initialized the project
 ```
+# Credits
+
+[Prototyping Textures](https://kenney.nl/assets/prototype-textures) by Kenney

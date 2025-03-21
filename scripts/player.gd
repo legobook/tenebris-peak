@@ -1,18 +1,18 @@
 extends CharacterBody3D
 
 # Define nodes
-@onready var head = $Head
-@onready var camera = $Head/Camera3D
+@onready var camera_pivot = $CameraPivot
+@onready var camera = $CameraPivot/Camera3D
 
 # Define the player variables
-const walk_speed = 5
-const sprint_speed = 8
+const forward_speed = 7
+const back_speed = 3
 const sensitivity = 0.003
 var speed
 
 # Define camera head bobbing variables
-const bob_frequency = 2
-const bob_amplitude = 0.08
+const bob_frequency = 3.0
+const bob_amplitude = 0.02
 var bob_time = 0
 
 func _ready():
@@ -22,39 +22,35 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		# Move the camera according to the mouse movement
-		head.rotate_y(-event.relative.x * sensitivity)
+		camera_pivot.rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
 		
 		# Make sure you can't bend your head backwards
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 func _headbob() -> Vector3:
-	var position = Vector3.ZERO
+	var camera_position = Vector3.ZERO
 	
 	# Calculate the bob with a sine wave
-	position.y = sin(bob_time * bob_frequency) * bob_amplitude
-	position.x = cos(bob_time * bob_frequency / 2) * bob_amplitude
+	camera_position.y = sin(bob_time * bob_frequency) * bob_amplitude
+	camera_position.x = cos(bob_time * bob_frequency / 2) * bob_amplitude
 	
-	return position
+	return camera_position
 
 func _physics_process(delta):
 	# Get input and handle movement
 	var input_direction = Input.get_vector("player_left", "player_right", "player_forward", "player_back")
-	var direction = (head.transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	var direction = (camera_pivot.transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	
-	# Handle sprinting
-	if Input.is_action_pressed("player_sprint"):
-		speed = sprint_speed
+	# Determine which speed value to use
+	if input_direction.y < 0:
+		speed = forward_speed
 	else:
-		speed = walk_speed
+		speed = back_speed
 	
 	# Calculate movement velocity based on moving direction
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 10)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 10)
+	velocity.x = lerp(velocity.x, direction.x * speed, delta * 12)
+	velocity.z = lerp(velocity.z, direction.z * speed, delta * 12)
 	
 	# Head bobbing
 	bob_time += delta * velocity.length()
