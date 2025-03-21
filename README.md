@@ -3,6 +3,7 @@
 ### Version 0.1.2
 ```
 [+] Added basic prototype textures (Made by Kenney)
+[+] Added a basic sword (Model made by crimsongcat)
 [~] Adjusted player movement (player moves faster going forward, slower going backwards)
 [~] Changed the environment
 [~] Fixed a variable naming bug with the player
@@ -24,3 +25,4 @@
 # Credits
 
 [Prototyping Textures](https://kenney.nl/assets/prototype-textures) by Kenney
+[Sword Model](https://crimsongcat.itch.io/psx-sword-espada-ps1) by crimsongcat

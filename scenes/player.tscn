@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://50bi7u6u55dc"]
+[gd_scene load_steps=5 format=3 uid="uid://50bi7u6u55dc"]
 
 [ext_resource type="Script" uid="uid://cmdtiokb3ussf" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://dwohfcs88ei2u" path="res://models/sword/sword.fbx" id="2_g2els"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rwgxs"]
 
@@ -25,3 +26,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="ItemPivot" type="Node3D" parent="CameraPivot/Camera3D"]
+transform = Transform3D(1, -1.13133e-08, -1.48943e-09, 1.13133e-08, 0.965926, 0.258819, -1.48943e-09, -0.258819, 0.965926, 0.4, -0.5, -0.6)
+
+[node name="Sword" parent="CameraPivot/Camera3D/ItemPivot" instance=ExtResource("2_g2els")]
+transform = Transform3D(-4.71054e-08, 6.13988e-15, -1, -6.94197e-28, -1.28978, -2.31272e-15, -1.07765, 1.19209e-07, 4.37114e-08, 0.0999999, 0.948357, -0.167303)
