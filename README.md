@@ -24,5 +24,5 @@
 ```
 # Credits
 
-[Prototyping Textures](https://kenney.nl/assets/prototype-textures) by Kenney
+[Prototyping Textures](https://kenney.nl/assets/prototype-textures) by Kenney\
 [Sword Model](https://crimsongcat.itch.io/psx-sword-espada-ps1) by crimsongcat
